@@ -1,0 +1,25 @@
+---
+version: 1
+mappings:
+- body:
+    foreach:
+        input: "($a := $zosAssetResponse.channel.responseCode200; $a != null ? $a : [])"
+        mappings:
+        - title:
+            template: "{{$item.'title'}}"
+        - authors:
+            foreach:
+                input: "($a := $item.'authors'; $a != null ? $a : [])"
+                template: "{{$item}}"
+        - status:
+            template: "{{$item.'status'}}"
+        - formNumber:
+            template: "{{$item.'formNumber'}}"
+        - publicationDate:
+            template: "{{$item.'publicationDate'}}"
+        - documentType:
+            template: "{{$item.'documentType'}}"
+        - sizeMB:
+            expression: "$item.'sizeMB'"
+        - url:
+            template: "{{$item.'url'}}"

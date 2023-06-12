@@ -1,0 +1,12 @@
+/**************************
+* Copyright IBM Corp. 2021
+**************************/
+plugins {
+  id 'com.ibm.zosconnect.gradle' version '1.1.0'
+}
+repositories {
+  maven {
+    url '/templates/gradleLibs/'
+  }
+  mavenCentral()
+}

@@ -1,0 +1,7 @@
+---
+version: 1
+mappings:
+- body:
+    mappings:
+    - message:
+        template: "{{$zosAssetResponse.channel.responseCode500.'message'}}"

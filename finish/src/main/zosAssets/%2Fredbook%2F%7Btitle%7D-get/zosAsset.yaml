@@ -1,0 +1,9 @@
+---
+version: 1.0
+type: "cicsChannel-1.1"
+description: ""
+providerProperties:
+  language: "COBOL"
+  program: "RBKZCAPI"
+  connectionRef: "cicsConn"
+  ccsid: "037"

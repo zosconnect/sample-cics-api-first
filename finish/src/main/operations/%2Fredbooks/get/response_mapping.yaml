@@ -1,0 +1,11 @@
+---
+version: 1
+response_200.yaml:
+  condition: "$exists($zosAssetResponse.channel.responseCode200) and $boolean($zosAssetResponse.channel.responseCode200)"
+  httpStatusCode: 200
+response_404.yaml:
+  condition: "$exists($zosAssetResponse.channel.responseCode404) and $boolean($zosAssetResponse.channel.responseCode404)"
+  httpStatusCode: 404
+response_500.yaml:
+  condition: true
+  httpStatusCode: 500

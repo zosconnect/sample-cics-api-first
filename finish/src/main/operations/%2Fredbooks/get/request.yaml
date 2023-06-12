@@ -1,0 +1,18 @@
+---
+version: 1
+mappings:
+- channel:
+    mappings:
+    - DFHWS-URI:
+        template: "/redbooks"
+    - DFHWS-URI-QUERY:
+        template: "{{$join($each($queryParameters, function($value, $key) {$key & \"=\" & $value}), \"&\")}}"
+    - DFHHTTPMETHOD:
+        template: "GET"
+    - data:
+        mappings:
+        - requestQueryParameters:
+            mappings:
+            - author:
+                type: "string"
+                template: "{{$queryParameters.'author'}}"

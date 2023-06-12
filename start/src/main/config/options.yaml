@@ -1,0 +1,9 @@
+provider: CICS
+programInterface: CHANNEL
+language: COBOL
+connectionRef: cicsConn
+program: RBKZCAPI
+ccsid: 037
+providerPrefix: RBK
+defaultCharacterMaxLength: 50
+defaultFractionDigits: 2

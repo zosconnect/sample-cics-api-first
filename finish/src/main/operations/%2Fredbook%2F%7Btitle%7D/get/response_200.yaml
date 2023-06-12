@@ -1,0 +1,23 @@
+---
+version: 1
+mappings:
+- body:
+    mappings:
+    - title:
+        template: "{{$zosAssetResponse.channel.responseCode200.'title'}}"
+    - authors:
+        foreach:
+            input: "($a := $zosAssetResponse.channel.responseCode200.'authors'; $a != null ? $a : [])"
+            template: "{{$item}}"
+    - status:
+        template: "{{$zosAssetResponse.channel.responseCode200.'status'}}"
+    - formNumber:
+        template: "{{$zosAssetResponse.channel.responseCode200.'formNumber'}}"
+    - publicationDate:
+        template: "{{$zosAssetResponse.channel.responseCode200.'publicationDate'}}"
+    - documentType:
+        template: "{{$zosAssetResponse.channel.responseCode200.'documentType'}}"
+    - sizeMB:
+        expression: "$zosAssetResponse.channel.responseCode200.'sizeMB'"
+    - url:
+        template: "{{$zosAssetResponse.channel.responseCode200.'url'}}"

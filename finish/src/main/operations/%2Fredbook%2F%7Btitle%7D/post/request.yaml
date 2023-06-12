@@ -1,0 +1,38 @@
+---
+version: 1
+mappings:
+- channel:
+    mappings:
+    - DFHWS-URI:
+        template: "/redbook/{{$pathParameters.'title'}}"
+    - DFHWS-URI-QUERY:
+        template: "{{$join($each($queryParameters, function($value, $key) {$key & \"=\" & $value}), \"&\")}}"
+    - DFHHTTPMETHOD:
+        template: "POST"
+    - data:
+        mappings:
+        - requestPathParameters:
+            mappings:
+            - title:
+                type: "string"
+                template: "{{$pathParameters.'title'}}"
+        - requestBody:
+            mappings:
+            - title:
+                template: "{{$body.'title'}}"
+            - authors:
+                foreach:
+                    input: "($a := $body.'authors'; $a != null ? $a : [])"
+                    template: "{{$item}}"
+            - status:
+                template: "{{$body.'status'}}"
+            - formNumber:
+                template: "{{$body.'formNumber'}}"
+            - publicationDate:
+                template: "{{$body.'publicationDate'}}"
+            - documentType:
+                template: "{{$body.'documentType'}}"
+            - sizeMB:
+                expression: "$body.'sizeMB'"
+            - url:
+                template: "{{$body.'url'}}"

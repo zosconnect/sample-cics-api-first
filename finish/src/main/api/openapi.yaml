@@ -1,0 +1,180 @@
+openapi: 3.0.3
+info:
+  title: RedbookAPI
+  description: A simple OAS 3.0 IBM Redbook management API used to demonstate the function of the z/OS Connect API Requester functionality.
+  version: 1.0.2
+paths:
+  '/redbook/{title}':
+    summary: Redbook Management API
+    description: Operations that pertain to the maintenance of redbook information
+    get:
+      summary: Retrieve a Redbook
+      description: Retrieve a single redbook by title with optional author, if the author is supplied and the redbook is not
+                   found return a list of the authors works.
+      operationId: getRedbook
+      parameters:
+        - name: title
+          in: path
+          description: The required book title
+          required: true
+          schema:
+            type: string
+            maxLength: 80
+        - name: author
+          in: query
+          description: An optional redbook author
+          schema:
+            type: string
+            maxLength: 40
+      responses:
+        '200':
+          description: A Redbook is returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Redbook'
+        '404':
+          description: No Redbook
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedbookNotFound'
+        '500':
+          description: Endpoint Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    post:
+      summary: Add details of a redbook
+      description: Create a redbook entry
+      operationId: createRedbook
+      parameters:
+        - name: title
+          in: path
+          description: The required book title
+          required: true
+          schema:
+            type: string
+            maxLength: 80
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Redbook'
+      responses:
+        '201':
+          description: A Redbook is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Redbook'
+        '409':
+          description: The redbook title already exists and is returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Redbook'
+        '500':
+          description: Endpoint Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /redbooks:
+    summary: Redbook bulk operations
+    description: Bulk operations
+    get:
+      summary: Retrieve all Redbooks
+      description: Retrieve all redbooks
+      operationId: getAllRedbooks
+      parameters:
+        - name: author
+          in: query
+          description: An optional author
+          required: false
+          schema:
+            type: string
+            maxLength: 40
+      responses:
+        '200':
+          description: A collection of Redbooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Redbooks'
+        "404":
+          description: Authors collection not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedbookNotFound'
+        '500':
+          description: Endpoint Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+components:
+  schemas:
+    Redbook:
+      type: object
+      required:
+        - title
+        - authors
+        - status
+        - formNumber
+      properties:
+        title:
+          type: string
+          maxLength: 80
+        authors:
+            type: array
+            maxItems: 20
+            items:
+              type: string
+              maxLength: 40
+        status:
+          type: string
+          enum: [ DRAFT, PUBLISHED ]
+        formNumber:
+          type: string
+          minLength: 12
+          maxLength: 12
+        publicationDate:
+          type: string
+          format: date
+        documentType:
+          type: string
+          enum: [ PDF, HARDCOPY ]
+        sizeMB:
+          type: number
+          format: decimal
+          minimum: 0
+        url:
+          type: string
+          maxLength: 100
+    Redbooks:
+      type: array
+      items:
+        $ref: '#/components/schemas/Redbook'
+    RedbookNotFound:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+        authorsBooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Redbook'

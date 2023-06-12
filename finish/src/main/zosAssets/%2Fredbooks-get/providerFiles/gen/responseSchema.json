@@ -1,0 +1,131 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "type" : "object",
+  "properties" : {
+    "channel" : {
+      "description" : "json-schema",
+      "type" : "object",
+      "properties" : {
+        "responseCode200" : {
+          "minItems" : 0,
+          "type" : "array",
+          "items" : {
+            "required" : [ "authors", "formNumber", "status", "title" ],
+            "type" : "object",
+            "properties" : {
+              "title" : {
+                "maxLength" : 80,
+                "type" : "string"
+              },
+              "authors" : {
+                "maxItems" : 20,
+                "minItems" : 0,
+                "type" : "array",
+                "items" : {
+                  "maxLength" : 40,
+                  "type" : "string"
+                }
+              },
+              "status" : {
+                "type" : "string",
+                "enum" : [ "DRAFT", "PUBLISHED" ]
+              },
+              "formNumber" : {
+                "maxLength" : 12,
+                "minLength" : 12,
+                "type" : "string"
+              },
+              "publicationDate" : {
+                "type" : "string",
+                "format" : "date"
+              },
+              "documentType" : {
+                "type" : "string",
+                "enum" : [ "PDF", "HARDCOPY" ]
+              },
+              "sizeMB" : {
+                "minimum" : 0,
+                "type" : "number",
+                "format" : "decimal"
+              },
+              "url" : {
+                "maxLength" : 100,
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "responseCode404" : {
+          "required" : [ "message" ],
+          "type" : "object",
+          "properties" : {
+            "message" : {
+              "type" : "string"
+            },
+            "authorsBooks" : {
+              "minItems" : 0,
+              "type" : "array",
+              "items" : {
+                "required" : [ "authors", "formNumber", "status", "title" ],
+                "type" : "object",
+                "properties" : {
+                  "title" : {
+                    "maxLength" : 80,
+                    "type" : "string"
+                  },
+                  "authors" : {
+                    "maxItems" : 20,
+                    "minItems" : 0,
+                    "type" : "array",
+                    "items" : {
+                      "maxLength" : 40,
+                      "type" : "string"
+                    }
+                  },
+                  "status" : {
+                    "type" : "string",
+                    "enum" : [ "DRAFT", "PUBLISHED" ]
+                  },
+                  "formNumber" : {
+                    "maxLength" : 12,
+                    "minLength" : 12,
+                    "type" : "string"
+                  },
+                  "publicationDate" : {
+                    "type" : "string",
+                    "format" : "date"
+                  },
+                  "documentType" : {
+                    "type" : "string",
+                    "enum" : [ "PDF", "HARDCOPY" ]
+                  },
+                  "sizeMB" : {
+                    "minimum" : 0,
+                    "type" : "number",
+                    "format" : "decimal"
+                  },
+                  "url" : {
+                    "maxLength" : 100,
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responseCode500" : {
+          "type" : "object",
+          "properties" : {
+            "message" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "abendCode" : {
+      "type" : "string"
+    }
+  },
+  "description" : "General wrapper for CICS channel z/OS Asset responses"
+}
