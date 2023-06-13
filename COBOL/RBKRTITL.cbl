@@ -144,7 +144,7 @@
 
        EXIT-PROGRAM.
       * Free the Redbook store TSQ for another task to use
-  	        EXEC CICS DEQ RESOURCE(WS-REDBOOKS-TSQ)
+  	      EXEC CICS DEQ RESOURCE(WS-REDBOOKS-TSQ)
                          LENGTH(16)
            END-EXEC.
 

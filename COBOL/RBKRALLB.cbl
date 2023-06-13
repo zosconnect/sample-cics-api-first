@@ -42,9 +42,9 @@
                        RESP(WS-BOOK-RESP)
            END-EXEC.
 
+      * If we can access the TSQ, loop over the books and get each one
            IF WS-BOOK-RESP = DFHRESP(NORMAL)
-      * Loop over the books and get each one
-              PERFORM UNTIL EXIT
+                 PERFORM UNTIL EXIT
                  EXEC CICS READQ TS QNAME(WS-REDBOOKS-TSQ)
                      INTO(WS-BOOK)
                      NEXT
@@ -74,7 +74,7 @@
                                    RESP(WS-AUTH-RESP)
                                    NEXT
                        END-EXEC
-      * We reached the end of the TSQ
+      * We reached the end of the authors TSQ
                        IF WS-AUTH-RESP NOT = DFHRESP(NORMAL) THEN
                           EXIT PERFORM
                        END-IF

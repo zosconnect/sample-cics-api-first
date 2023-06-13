@@ -81,8 +81,8 @@
                              RESP(WS-AUTH-RESP)
                  END-EXEC
 
+      * If the TSQ is available, loop over all the authors
                  IF WS-AUTH-RESP = DFHRESP(NORMAL)
-      * Loop over all the authors
                     PERFORM UNTIL EXIT
                        EXEC CICS READQ TS QNAME(WS-AUTHORS-TSQ)
                                   INTO(WS-AUTHOR)
@@ -179,7 +179,7 @@
 
        EXIT-PROGRAM.
       * Free the Redbook store TSQ for another task to use
-  	       EXEC CICS DEQ RESOURCE(WS-REDBOOKS-TSQ)
+  	        EXEC CICS DEQ RESOURCE(WS-REDBOOKS-TSQ)
                          LENGTH(16)
            END-EXEC.
 

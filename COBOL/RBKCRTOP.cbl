@@ -42,7 +42,7 @@
       * Prepare the response structure
            INITIALIZE BAQBASE-RBK01P01.
 
-      * Put the title as a parameter
+      * Use the title as a parameter
            EXEC CICS PUT CONTAINER(WS-RBKPARM-CONT-NAME)
                  CHANNEL(WS-CHANNEL-NAME)
                  FROM(requestPathParameters)
@@ -70,14 +70,15 @@
               GO TO EXIT-PROGRAM
            END-IF.
 
-      * Check if WS-REDBOOK-CONT-NAME was returned in the channel
+      * Check if a book was found with the provided title
            EXEC CICS GET CONTAINER(WS-REDBOOK-CONT-NAME)
                          CHANNEL(WS-CHANNEL-NAME)
                          INTO(WS-BOOK)
                          RESP(WS-RESP)
            END-EXEC.
 
-      * We already have a book of with the requested title, return a 409
+      * If we already have a book of with the requested title, 
+      * return a 409
            IF WS-RESP = DFHRESP(NORMAL) THEN
 
       * Prepare the 409 response, sending back the details of the

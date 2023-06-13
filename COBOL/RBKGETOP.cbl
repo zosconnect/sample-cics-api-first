@@ -40,7 +40,7 @@
            END-EXEC.
 
       * Take a copy of the title stored in the path parameter so that
-      * we can easily compare the it with the title of the stored books
+      * we can easily compare it with the title of the stored books
            MOVE Xtitle OF requestPathParameters
               (1:Xtitle-length OF requestPathParameters )
               TO WS-TITLE-INPUT.
@@ -117,7 +117,7 @@
               END-IF
 
       * We got some books back for this author so now we need to
-      * loop over the returned container and check the for the title
+      * loop over them and check the for the requested title
               SET WS-TITLE-NOT-FOUND TO TRUE
               MOVE 0 TO WS-OFFSET
 
@@ -185,7 +185,7 @@
                  GO TO EXIT-PROGRAM
               END-IF
 
-      * Otherwise, we found the request book with the correct author
+      * Otherwise, we found the requested book with the correct author
       * so we prepare a 200 response
               MOVE 1 TO responseCode200-existence OF
                  BAQBASE-RBK00P01

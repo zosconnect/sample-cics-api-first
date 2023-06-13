@@ -31,10 +31,11 @@
            EXEC CICS ASSIGN CHANNEL(WS-CHANNEL-NAME) END-EXEC.
 
       * Tell CICS how large the working storage fields are to receive
-      * the data from the context containers and then get the data
+      * the data from the context containers
            MOVE LENGTH OF WS-REQUEST-URI TO WS-REQUEST-URI-LENGTH.
            MOVE LENGTH OF WS-REQUEST-METHOD TO WS-REQUEST-METHOD-LENGTH.
 
+      * Now get the data
            EXEC CICS GET CONTAINER(WS-URI-CONT-NAME)
                          CHANNEL(WS-CHANNEL-NAME)
                          INTO(WS-REQUEST-URI)
