@@ -16,7 +16,7 @@ The `finish` directory contains a completed API project which can be used to see
 3. Finally compile and install the COBOL programs into your CICS region and run the `RBKS` transaction to intialise the Redbook store.
 
 ## Structure
-* The `COBOL` directory contains the CICS COBOL programs that implement the IBM Redbook API. RBKZCAPI is the first program called by z/OS Connect.
+* The `COBOL` directory contains the CICS COBOL programs that implement the IBM Redbook API. `RBKZCAPI` is the first program called by z/OS Connect.
 * The `COPY` directory contains the COBOL copybooks required by the COBOL programs. The remaining copybooks are generated from the OpenAPI document and can be found in `finish/build/generated/zosConnectProvider/structures`.
 * The `CSD` directory contains the CSD file to define the COBOL programs and transactions to CICS.
 * The `start` directory contains an initial project layout which can be used as the basis for learning the process of creating an API first project using the z/OS Connect Gradle plugin
@@ -27,10 +27,10 @@ The `finish` directory contains a completed API project which can be used to see
 Path **/redbooks**. Method **GET**. Passes an optional author query parameter of type string and expects an array of Redbook objects for a **200** response.
 
 ### getRedbook
-Path **/redbook/{bookName}**. Method **GET**. Passes a title path parameter, and optional author query parameter and optional documentType header parameter. A Redbook object is returned for a **200** response. For a **404 (Not Found)** response a RedbookNotFound object is returned containing a message. A **500** for media type **text/plain** with a string schema.
+Path **/redbook/{bookName}**. Method **GET**. Passes a title path parameter, and optional author query parameter and optional documentType header parameter. A Redbook object is returned for a **200** response. For a **404 (Not Found)** response a RedbookNotFound object is returned containing a message.
 
 ### createRedbook
-Path **/redbook/{bookName}**. Method **POST**. Passes a bookName path parameter and a Book object body. Expects a Book object for a **2XX** wildcarded response. A **409 (Conflict)** can also be returned. No other default responses are defined.
+Path **/redbook/{bookName}**. Method **POST**. Passes a bookName path parameter and a Book object body. Expects a Book object for a **201** response. A **409 (Conflict)** can also be returned. 
 
 ## License
 See `LICENSE` for details.
