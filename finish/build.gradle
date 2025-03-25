@@ -2,7 +2,7 @@
 * Copyright IBM Corp. 2021
 **************************/
 plugins {
-    id 'com.ibm.zosconnect.gradle' version '1.4.8'
+    id 'com.ibm.zosconnect.gradle' version '1.4.9'
 }
 repositories {
     maven {
