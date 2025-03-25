@@ -1,23 +1,43 @@
 ---
-version: 1
+version: 1.2
 mappings:
 - body:
+    required: false
+    nullable: false
+    existsIfEmpty: "$exists($zosAssetResponse.channel.responseCode409)"
     mappings:
     - title:
         template: "{{$zosAssetResponse.channel.responseCode409.'title'}}"
+        required: true
+        nullable: false
     - authors:
+        required: true
+        nullable: false
         foreach:
             input: "($a := $zosAssetResponse.channel.responseCode409.'authors'; $a != null ? $a : [])"
+            existsIfEmpty: "$exists($item)"
             template: "{{$item}}"
     - status:
         template: "{{$zosAssetResponse.channel.responseCode409.'status'}}"
+        required: true
+        nullable: false
     - formNumber:
         template: "{{$zosAssetResponse.channel.responseCode409.'formNumber'}}"
+        required: true
+        nullable: false
     - publicationDate:
         template: "{{$zosAssetResponse.channel.responseCode409.'publicationDate'}}"
+        required: false
+        nullable: false
     - documentType:
         template: "{{$zosAssetResponse.channel.responseCode409.'documentType'}}"
+        required: false
+        nullable: false
     - sizeMB:
         expression: "$zosAssetResponse.channel.responseCode409.'sizeMB'"
+        required: false
+        nullable: false
     - url:
         template: "{{$zosAssetResponse.channel.responseCode409.'url'}}"
+        required: false
+        nullable: false

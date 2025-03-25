@@ -1,5 +1,5 @@
 ---
-version: 1
+version: 1.2
 mappings:
 - channel:
     mappings:
@@ -16,3 +16,5 @@ mappings:
             - author:
                 type: "string"
                 template: "{{$queryParameters.'author'}}"
+                required: false
+                nullable: false
