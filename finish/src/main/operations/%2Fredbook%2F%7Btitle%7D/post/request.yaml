@@ -1,5 +1,5 @@
 ---
-version: 1
+version: 1.2
 mappings:
 - channel:
     mappings:
@@ -16,23 +16,43 @@ mappings:
             - title:
                 type: "string"
                 template: "{{$pathParameters.'title'}}"
+                required: true
+                nullable: false
         - requestBody:
+            existsIfEmpty: "$exists($body)"
             mappings:
             - title:
                 template: "{{$body.'title'}}"
+                required: true
+                nullable: false
             - authors:
+                required: true
+                nullable: false
                 foreach:
                     input: "($a := $body.'authors'; $a != null ? $a : [])"
+                    existsIfEmpty: "$exists($item)"
                     template: "{{$item}}"
             - status:
                 template: "{{$body.'status'}}"
+                required: true
+                nullable: false
             - formNumber:
                 template: "{{$body.'formNumber'}}"
+                required: true
+                nullable: false
             - publicationDate:
                 template: "{{$body.'publicationDate'}}"
+                required: false
+                nullable: false
             - documentType:
                 template: "{{$body.'documentType'}}"
+                required: false
+                nullable: false
             - sizeMB:
                 expression: "$body.'sizeMB'"
+                required: false
+                nullable: false
             - url:
                 template: "{{$body.'url'}}"
+                required: false
+                nullable: false
