@@ -9,9 +9,9 @@ The `start` directory contains an initial project layout which can be used as th
 The `finish` directory contains a completed API project which can be used to see all the parts and definitions of a generated API. The completed project was created by running the `generateApiProvider` task of the z/OS Connect Gradle plug-in.
 
 ## Instructions
-1. Follow the instructions in the [IBM Documentation](https://www.ibm.com/docs/en/zos-connect/zos-connect/3.0?topic=provider-using-api-gradle-plug-in) on how to generate and build the API provider project. 
+1. Follow the instructions in the [IBM Documentation](https://www.ibm.com/docs/en/zos-connect/3.0.0?topic=provider-using-api-gradle-plug-in) on how to generate and build the API provider project. 
 
-2. Then follow the instructions in the [IBM Documentation](https://www.ibm.com/docs/en/zos-connect/zos-connect/3.0?topic=overview-api-provider-devops) on how to deploy the API WAR file.
+2. Then follow the instructions in the [IBM Documentation](https://www.ibm.com/docs/en/zos-connect/3.0.0?topic=devops-deploy) on how to deploy the API WAR file.
 
 3. Finally compile and install the COBOL programs into your CICS region and run the `RBKS` transaction to intialise the Redbook store.
 
