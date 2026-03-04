@@ -1,3 +1,4 @@
+projectType: provider
 provider: CICS
 programInterface: CHANNEL
 language: COBOL
