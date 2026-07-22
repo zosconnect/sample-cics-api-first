@@ -2,7 +2,7 @@
 # Copyright IBM Corp. 2021
 ##########################
 
-FROM ibm-zcon-server:3.0.104
+FROM ibm-zcon-server:3.0.105
 
 # customise server.xml via dropins
 COPY --chown=1001:0 src/main/liberty/config /config/configDropins/overrides
